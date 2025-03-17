@@ -8,11 +8,7 @@ import {
 } from "react-icons/ai";
 import { FiMail, FiCalendar, FiPhone, FiMapPin } from "react-icons/fi";
 import { FaMotorcycle } from "react-icons/fa";
-<<<<<<< HEAD
 import profilePic from "../assets/ava.jpg";
-=======
-import profilePic from "../assets/profile1.jpg";
->>>>>>> 4c55955304c302142bf04d127752420966cc6f4a
 import logo from "../assets/logo.jpg";
 
 export default function DashboardLayout({ children }) {
@@ -25,16 +21,9 @@ export default function DashboardLayout({ children }) {
   const notifications = [
     { id: 1, title: "Pesanan Baru Masuk", time: "2 menit yang lalu" },
     { id: 2, title: "Unit Motor Sudah Siap", time: "15 menit yang lalu" },
-<<<<<<< HEAD
     { id: 3, title: "Pembayaran Diterima", time: "1 jam yang lalu" },
     { id: 4, title: "Pengiriman Diproses", time: "3 jam yang lalu" },
     { id: 5, title: "Stok Motor Diperbarui", time: "5 jam yang lalu" },
-=======
-    { id: 3, title: "Pembayaran Dari Pelanggan Diterima", time: "1 jam yang lalu" },
-    { id: 4, title: "Pengiriman Sedang Diproses", time: "3 jam yang lalu" },
-    { id: 5, title: "Stok Motor Diperbarui", time: "5 jam yang lalu" },
-    { id: 6, title: "Pesanan Dibatalkan Oleh Pelanggan", time: "1 hari yang lalu" },
->>>>>>> 4c55955304c302142bf04d127752420966cc6f4a
   ];
   const displayedNotifications = viewAll ? notifications : notifications.slice(0, 4);
 
@@ -68,15 +57,9 @@ export default function DashboardLayout({ children }) {
               </Link>
             </li>
             <li>
-<<<<<<< HEAD
               <Link to="/data-motor" className={`flex items-center gap-3 p-2 rounded-md ${isActive(["/data-motor", "/tambah-motor"])}`}>
                 <FaMotorcycle className="text-lg" />
                 <span className="text-sm">Data Motor</span>
-=======
-              <Link to="/dealer" className={`flex items-center gap-3 p-2 rounded-md ${isActive(["/dealer", "/tambah"])}`}>
-                <FaMotorcycle className="text-lg" />
-                <span className="text-sm">Dealer</span>
->>>>>>> 4c55955304c302142bf04d127752420966cc6f4a
               </Link>
             </li>
             <li>
@@ -122,11 +105,7 @@ export default function DashboardLayout({ children }) {
               <img src={profilePic} alt="Profile" className="w-10 h-10 rounded-full object-cover" />
               <div>
                 <p className="text-sm font-medium text-gray-800">Jhon Doe</p>
-<<<<<<< HEAD
                 <p className="text-xs text-gray-500">Dealer</p>
-=======
-                <p className="text-xs text-gray-500">Admin</p>
->>>>>>> 4c55955304c302142bf04d127752420966cc6f4a
               </div>
             </div>
           </div>
@@ -164,18 +143,12 @@ export default function DashboardLayout({ children }) {
               </div>
               <div className="text-center">
                 <img src={profilePic} alt="Profile" className="w-24 h-24 rounded-full object-cover mx-auto mb-3 shadow-md border-4 border-gray-200" />
-<<<<<<< HEAD
                 <h4 className="text-lg font-semibold text-gray-800">Jhon Doe</h4>
                 <p className="text-sm text-gray-500">Dealer</p>
-=======
-                <h4 className="text-lg font-semibold text-gray-800">Anderson Barden</h4>
-                <p className="text-sm text-gray-500">Admin</p>
->>>>>>> 4c55955304c302142bf04d127752420966cc6f4a
               </div>
               <div className="mt-4 space-y-3 text-gray-700 border-t pt-4">
                 <div className="flex items-center gap-3 text-sm">
                   <FiMail className="text-gray-500 text-lg" />
-<<<<<<< HEAD
                   <span>jhondoe@gmail.com</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm">
@@ -185,17 +158,6 @@ export default function DashboardLayout({ children }) {
                 <div className="flex items-center gap-3 text-sm">
                   <FiPhone className="text-gray-500 text-lg" />
                   <span>+62 812-3456-9876</span>
-=======
-                  <span>anderson@gmail.com</span>
-                </div>
-                <div className="flex items-center gap-3 text-sm">
-                  <FiCalendar className="text-gray-500 text-lg" />
-                  <span>Bergabung: 12 Jan 2023</span>
-                </div>
-                <div className="flex items-center gap-3 text-sm">
-                  <FiPhone className="text-gray-500 text-lg" />
-                  <span>+62 812-3456-7890</span>
->>>>>>> 4c55955304c302142bf04d127752420966cc6f4a
                 </div>
                 <div className="flex items-center gap-3 text-sm">
                   <FiMapPin className="text-gray-500 text-lg" />
@@ -210,6 +172,9 @@ export default function DashboardLayout({ children }) {
             </>
           </div>
         )}
+
+        {/* Page Content */}
+        <main className="mt-20 p-6">{children}</main>
       </div>
     </div>
   );
