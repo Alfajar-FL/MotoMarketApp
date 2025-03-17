@@ -68,28 +68,28 @@ const Lending_Product = () => {
         </div>
 
         {/* Thumbnail List */}
-        <div className="mt-6 flex items-center justify-center space-x-4">
-          <button onClick={prevImage} className="p-2 bg-white shadow-md rounded-full border border-gray-300">
-            <ChevronLeft size={24} className="text-gray-600" />
-          </button>
-          <div className="flex space-x-2 bg-white p-3 rounded-lg shadow-lg border border-gray-300">
-            {imageList.map((img, index) => (
-              <img
-                key={index}
-                src={img}
-                alt="Thumbnail"
-                className={`w-20 h-14 object-cover border-2 rounded cursor-pointer transition-all duration-300 ${
-                  currentIndex === index ? "border-red-500 scale-110" : "border-gray-300"
-                }`}
-                onClick={() => setCurrentIndex(index)}
-              />
-            ))}
-          </div>
-          <button onClick={nextImage} className="p-2 bg-white shadow-md rounded-full border border-gray-300">
-            <ChevronRight size={24} className="text-gray-600" />
-          </button>
+             <div className="mt-6 flex items-center justify-center space-x-4">
+        <button onClick={prevImage} className="p-2 bg-white shadow-md rounded-full border border-gray-300">
+          <ChevronLeft size={24} className="text-gray-600" />
+        </button>
+        <div className="flex space-x-2 bg-white p-3 rounded-lg shadow-lg border border-gray-300">
+          {imageList.map((img, index) => (
+            <img
+              key={index}
+              src={img}
+              alt="Thumbnail"
+              className={`w-24 h-18 object-cover border-2 rounded cursor-pointer transition-all duration-300 ${
+                currentIndex === index ? "border-red-500 scale-110" : "border-gray-300"
+              }`}
+              onClick={() => setCurrentIndex(index)}
+            />
+          ))}
         </div>
+        <button onClick={nextImage} className="p-2 bg-white shadow-md rounded-full border border-gray-300">
+          <ChevronRight size={24} className="text-gray-600" />
+        </button>
       </div>
+    </div>
 
       {/* Filter Pencarian */}
       <div className="w-full max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg border border-gray-300 mt-8">

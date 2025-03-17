@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Lending_Product() {
+  const navigate = useNavigate();  // Hook untuk navigasi
   const products = [
-    { id: 1, image: "src/assets/Yamaha3.jpg", location: "KHUSUS JABODETABEK, BANTEN", name: "POLYTRON Fox 500 Sepeda Motor Listrik – OTR Jabodetabek & Banten", price: 43100000 },
+    { id: 1, image: "src/assets/Yamaha3.jpg", location: "KHUSUS JABODETABEK, BANTEN", name: "POLYTRON Fox 500 Sepeda Motor Listrik", price: 43100000 },
     { id: 2, image: "src/assets/Yamaha3.jpg", location: "KHUSUS JABODETABEK, BANTEN", name: "Yamaha NMAX 2023", price: 32000000 },
     { id: 3, image: "src/assets/Yamaha3.jpg", location: "BALI, SURABAYA", name: "Honda PCX 2022", price: 29000000 },
     { id: 4, image: "src/assets/Yamaha3.jpg", location: "SEMARANG, YOGYAKARTA", name: "Suzuki Burgman 2023", price: 31000000 },
@@ -36,65 +38,156 @@ function Lending_Product() {
     }
   });
 
+  const handleBuyNow = (id) => {
+    // Menavigasi ke halaman detail produk atau transaksi
+    navigate(`/produk/${id}`);
+  };
+
   return (
-    <div className="py-10 pb-10">
-      {/* Motor Unggulan */}
+    <div className="py-8 pb-8">
+      {/* Header */}
       <div className="flex items-center justify-between px-4">
         <div className="flex items-center gap-2">
-          <img src="src/assets/fire.png" alt="Icon" className="w-6 h-6" />
-          <h2 className="text-2xl font-bold">Motor Unggulan</h2>
+          {/* Ikon Api */}
+          <img src="src/assets/fire.png" alt="Fire" className="w-10 h-10 object-contain" />
+          
+          {/* Judul Motor Unggulan */}
+          <h2 className="text-xl font-bold">Motor Unggulan</h2>
+  
+          {/* Link ke Semua Produk */}
+          <a href="#" className="text-red-500 text-sm font-semibold ml-4">
+            Lihat semua &gt;
+          </a>
         </div>
-        <a href="#" className="text-red-500 text-sm font-semibold">Lihat semua &gt;</a>
       </div>
-      <p className="text-sm text-gray-600 px-4">Dapatkan penawaran terbaik di sini</p>
-      <div className="mt-6 overflow-x-auto whitespace-nowrap px-4 overflow-visible mb-16">
-        <div className="flex gap-6">
+  
+      {/* Container untuk List Motor */}
+      <div className="mt-6 overflow-x-auto whitespace-nowrap px-4 overflow-visible mb-12">
+        <div className="flex gap-6"> {/* Jarak antar card diperkecil */}
           {products.map((product) => (
-            <div key={product.id} className="border rounded-lg p-3 shadow-lg min-w-[300px] bg-white hover:shadow-xl hover:scale-105 transition-all duration-300">
-              <img src={product.image} alt={product.name} className="mx-auto w-full h-48 object-cover rounded-md" />
-              <div className="bg-red-600 text-white text-xs font-bold py-1 px-2 rounded-full inline-block mt-2">
+            <div 
+              key={product.id}
+              className="relative bg-white rounded-lg shadow-md p-4 w-80 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg border border-gray-300"
+            >
+              {/* Gambar Motor */}
+              <img 
+                src={product.image} 
+                alt={product.name} 
+                className="mx-auto w-full h-48 object-cover rounded-md"
+              />
+              
+              {/* Label Lokasi */}
+              <div className="absolute top-2 left-2 bg-red-600 text-white text-xs font-bold py-1 px-2 rounded-full">
                 {product.location}
               </div>
+  
+              {/* Nama Motor */}
               <p className="text-sm font-semibold mt-2">{product.name}</p>
+  
+              {/* Harga Motor */}
               <p className="text-lg font-bold text-red-500 mt-2">Rp{product.price.toLocaleString()}</p>
-              {/* Button Tambahan */}
-              <div className="mt-4 flex justify-center gap-2">
-                <button className="border px-4 py-2 rounded-full">Lebih Detail</button>
-                <button className="bg-red-600 text-white px-4 py-2 rounded-full">Beli Sekarang</button>
+  
+              {/* Tombol Aksi */}
+              <div className="flex gap-3 mt-3">
+                {/* Tombol Lebih Detail */}
+                <button className="border border-black text-black px-4 py-2 rounded-full text-sm transition-transform duration-300 ease-in-out hover:bg-gray-200 hover:scale-105">
+                  Lebih Detail
+                </button>
+  
+                {/* Tombol Beli Sekarang */}
+                <button 
+                  onClick={() => handleBuyNow(product.id)}
+                  className="bg-red-500 text-white px-4 py-2 rounded-full text-sm transition-transform duration-300 ease-in-out hover:bg-red-600 hover:scale-105 hover:shadow-lg"
+                >
+                  Beli Sekarang
+                </button>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Motor yang Tersedia */}
-      <div className="flex items-center justify-between px-4">
+     {/* Header Motor Bekas */}
+     <div className="flex items-center justify-between px-4 mt-8">
         <div className="flex items-center gap-2">
-          <img src="src/assets/star.png" alt="Icon" className="w-6 h-6" />
-          <h2 className="text-2xl font-bold">Motor yang Tersedia</h2>
+          {/* Ikon Motor Bekas */}
+          <img src="src/assets/star.png" alt="Used Bikes" className="w-15 h-15 object-contain" />
+
+          {/* Judul Motor Bekas */}
+          <h2 className="text-xl font-bold">Motor Bekas</h2>
+
+          {/* Dropdown Sortir */}
+          <select 
+            className="ml-4 px-2 py-1 border border-gray-300 rounded"
+            value={sortOption}
+            onChange={(e) => setSortOption(e.target.value)}
+          >
+            <option value="Terbaru">Terbaru</option>
+            <option value="Terlama">Terlama</option>
+            <option value="Harga Tertinggi">Harga Tertinggi</option>
+            <option value="Harga Terendah">Harga Terendah</option>
+          </select>
         </div>
-        <a href="#" className="text-red-500 text-sm font-semibold">Lihat semua &gt;</a>
       </div>
-      <div className="flex justify-end px-4 mt-4">
-        <select className="border px-3 py-1 rounded-lg" value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
-          <option>Terbaru</option>
-          <option>Terlama</option>
-          <option>Harga Tertinggi</option>
-          <option>Harga Terendah</option>
-        </select>
-      </div>
-      <div className="mt-6 overflow-x-auto whitespace-nowrap px-4 overflow-visible">
+
+      {/* List Motor Bekas */}
+      <div className="mt-6 overflow-x-auto whitespace-nowrap px-4 overflow-visible mb-12">
         <div className="flex gap-6">
           {sortedUsedBikes.map((bike) => (
-            <div key={bike.id} className="border rounded-lg p-3 shadow-lg min-w-[300px] bg-white hover:shadow-xl hover:scale-105 transition-all duration-300">
-              <img src={bike.image} alt={bike.name} className="mx-auto w-full h-48 object-cover rounded-md" />
+            <div 
+              key={bike.id}
+              className="relative bg-white rounded-lg shadow-md p-4 w-80 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg border border-gray-300"
+            >
+              {/* Gambar Motor */}
+              <img 
+                src={bike.image} 
+                alt={bike.name} 
+                className="mx-auto w-full h-48 object-cover rounded-md"
+              />
+
+              {/* Nama Motor */}
               <p className="text-sm font-semibold mt-2">{bike.name}</p>
+
+              {/* Harga Motor */}
               <p className="text-lg font-bold text-red-500 mt-2">Rp{bike.price.toLocaleString()}</p>
-              {/* Button Tambahan */}
-              <div className="mt-4 flex justify-center gap-2">
-                <button className="border px-4 py-2 rounded-full">Lebih Detail</button>
-                <button className="bg-red-600 text-white px-4 py-2 rounded-full">Beli Sekarang</button>
+
+              {/* Tanggal Rilis */}
+              <p className="text-xs text-gray-500">Tanggal: {bike.date}</p>
+
+              {/* Tombol Aksi */}
+              <div className="flex gap-3 mt-3">
+                {/* Tombol Lebih Detail */}
+                <button className="border border-black text-black px-4 py-2 rounded-full text-sm transition-transform duration-300 ease-in-out hover:bg-gray-200 hover:scale-105">
+                  Lebih Detail
+                </button>
+
+                {/* Tombol Beli Sekarang */}
+                <button 
+                  onClick={() => handleBuyNow(bike.id)}
+                  className="bg-red-500 text-white px-4 py-2 rounded-full text-sm transition-transform duration-300 ease-in-out hover:bg-red-600 hover:scale-105 hover:shadow-lg"
+                >
+                  Beli Sekarang
+                </button>
               </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Langkah Pembelian */}
+      <div className="px-4 mt-12">
+        <h2 className="text-2xl font-bold mb-6">Cara Membeli Motor</h2>
+        <div className="grid grid-cols-4 gap-6">
+          {[ 
+            { icon: "src/assets/beli_1.avif", title: "Pilih Motor", desc: "Cari motor yang sesuai dengan kebutuhan dan budget Anda." },
+            { icon: "src/assets/beli_2.avif", title: "Pesan Motor", desc: "Lakukan pemesanan dengan mengisi data dan memilih metode pembayaran." },
+            { icon: "src/assets/beli_3.avif", title: "Proses Pembayaran", desc: "Konfirmasi pembayaran sesuai metode yang dipilih." },
+            { icon: "src/assets/beli_4.avif", title: "Ambil Motor", desc: "Ambil motor yang telah dibayar sesuai dengan lokasi yang telah disepakati." }
+          ].map((step, index) => (
+            <div key={index} className="text-center">
+              <img src={step.icon} alt={step.title} className="w-20 h-20 mx-auto"/>
+              <p className="text-lg font-semibold mt-2">{step.title}</p>
+              <p className="text-sm text-gray-500 mt-1">{step.desc}</p>
             </div>
           ))}
         </div>
